@@ -1,0 +1,66 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Portal | Login/Sign Up{% endblock title %}
+
+{% block heading %}Welcome Back!{% endblock heading %}
+
+{% block content %}
+
+<div class="row">
+
+    <!------------------------->
+
+    <div class="col-md">
+
+        <!-- card one - bank -->
+
+        <div class="card mt-4 mb-4 mx-auto" style="max-width: 20rem;">
+            <img src="https://picsum.photos/200" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Admin</h5>
+                <p class="card-text">If you're an Admin, use the buttons below to Login/Sign up.</p>
+                <a href="{% url 'admin_login' %}" class="btn btn-secondary">Login</a>
+                <a href="{% url 'admin_signup' %}" class="btn btn-secondary">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------->
+
+    <div class="col-md">
+
+        <!-- card two - supplier -->
+
+        <div class="card mt-4 mb-4 mx-auto" style="max-width: 20rem;">
+            <img src="https://picsum.photos/200" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Manager</h5>
+                <p class="card-text">If you're a Manager, use the buttons below to Login/Sign up.</p>
+                <a href="{% url 'manager_login' %}" class="btn btn-secondary">Login</a>
+                <a href="{% url 'manager_signup' %}" class="btn btn-secondary">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------->
+
+    <div class="col-md">
+
+        <!-- card three - client -->
+
+        <div class="card mt-4 mb-4 mx-auto" style="max-width: 20rem;">
+            <img src="https://picsum.photos/200" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">HR Manager</h5>
+                <p class="card-text">If you're an HR Manager, use the buttons below to Login/Sign up.</p>
+                <a href="{% url 'hr_login' %}" class="btn btn-secondary">Login</a>
+                <a href="{% url 'hr_signup' %}" class="btn btn-secondary">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------->
+
+</div>
+
+{% endblock content %}
