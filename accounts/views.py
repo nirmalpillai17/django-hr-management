@@ -1,33 +1,73 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.contrib import messages
 
 from .forms import *
 
 
 def admin_signup(request):
     context = dict()
-    context['title'] = "Admin | Sign Up"
-    context['heading'] = "Admin User Sign Up"
+    context["title"] = "Admin | Sign Up"
+    context["heading"] = "Admin User Sign Up"
     form = AdminSignUp(request.POST or None)
-    context['form'] = form
+    context["form"] = form
     if request.method == "POST":
         if form.is_valid():
-            fs = form.save(commit = False)
+            fs = form.save(commit=False)
             fs.first_name = form.cleaned_data["first_name"].title()
             fs.last_name = form.cleaned_data["last_name"].title()
             fs.emp_id = form.cleaned_data["emp_id"].upper()
             fs.save()
             return redirect("admin_login")
+        for error_list in form.errors.values():
+            for error in error_list:
+                messages.warning(request, error)
         return redirect("admin_signup")
     return render(request, "accounts/signup.html", context)
 
+
 def manager_signup(request):
-    return HttpResponse("success")
+    context = dict()
+    context["title"] = "Manager | Sign Up"
+    context["heading"] = "Manager User Sign Up"
+    form = ManagerSignUp(request.POST or None)
+    context["form"] = form
+    if request.method == "POST":
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.first_name = form.cleaned_data["first_name"].title()
+            fs.last_name = form.cleaned_data["last_name"].title()
+            fs.emp_id = form.cleaned_data["emp_id"].upper()
+            fs.save()
+            return redirect("manager_login")
+        for error_list in form.errors.values():
+            for error in error_list:
+                messages.warning(request, error)
+        return redirect("manager_signup")
+    return render(request, "accounts/signup.html", context)
+
 
 
 def hr_signup(request):
-    return HttpResponse("success")
+    context = dict()
+    context["title"] = "HR | Sign Up"
+    context["heading"] = "HR User Sign Up"
+    form = HRSignUp(request.POST or None)
+    context["form"] = form
+    if request.method == "POST":
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.first_name = form.cleaned_data["first_name"].title()
+            fs.last_name = form.cleaned_data["last_name"].title()
+            fs.emp_id = form.cleaned_data["emp_id"].upper()
+            fs.save()
+            return redirect("hr_login")
+        for error_list in form.errors.values():
+            for error in error_list:
+                messages.warning(request, error)
+        return redirect("hr_signup")
+    return render(request, "accounts/signup.html", context)
 
 
 def admin_login(request):
@@ -44,6 +84,7 @@ def hr_login(request):
 
 def employee_login(request):
     return HttpResponse("success")
+
 
 def home_view(request):
     return render(request, "accounts/home.html")
