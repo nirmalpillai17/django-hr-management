@@ -8,10 +8,12 @@
 
 {% block content %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button class="btn btn-secondary" type="submit">Log In</button>
-</form>
+<div class="border p-4 m-auto" style="max-width: 25rem;">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-success" type="submit">Log In</button>
+    </form>
+</div>
 
 {% endblock content %}
