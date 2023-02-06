@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 from .models import *
 
@@ -61,3 +62,9 @@ class HRSignUp(UserCreationForm):
         )
 
         labels = {"my_admin": "Admin"}
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+

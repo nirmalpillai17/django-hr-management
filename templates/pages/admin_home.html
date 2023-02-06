@@ -1,0 +1,26 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block heading %}{{ heading }}{% endblock heading %}
+
+{% block content %}
+<!------------------------->
+
+<div class="col-md">
+
+    <!-- card three - client -->
+
+    <div class="card mt-4 mb-4 mx-auto" style="max-width: 20rem;">
+        <img src="https://picsum.photos/200" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Edit User Data</h5>
+            <p class="card-text">Edit official and personal data of all employees or yourself.</p>
+            <a href="{% url 'hr_login' %}" class="btn btn-secondary">Admin</a>
+            <a href="{% url 'hr_signup' %}" class="btn btn-secondary">Users</a>
+        </div>
+    </div>
+</div>
+
+<!------------------------->
+{% endblock content %}
