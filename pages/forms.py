@@ -18,9 +18,12 @@ class EditEmployeeDetails(forms.ModelForm):
             "mobile",
             "gender",
             "dob",
+            "my_manager",
             "start_date",
             "quit_date",
         ]
+
+        labels = {"my_manager": "Manager"}
 
         widgets = {
             "dob": DateInput(),

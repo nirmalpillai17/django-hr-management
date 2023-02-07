@@ -22,7 +22,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
-        <h2 class="float-left">{% block heading %}{% endblock heading %}</h2>
+        <h2>{% block heading %}{% endblock heading %}</h2>
         <li class="nav-item">
             <a class="btn btn-success ms-3">{{ user.first_name }}
                 <img class="rounded-circle ms-2" src="https://picsum.photos/50" alt="">
@@ -33,10 +33,13 @@
     <!-- main container -->
 
     <div class="container mb-4">
+
         {% include 'accounts/includes/messages.html' %}
 
-        {% block content %}
-        {% endblock content%}
+        <div class="row">
+            {% block content %}
+            {% endblock content%}
+        </div>
 
     </div>
 

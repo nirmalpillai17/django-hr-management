@@ -78,8 +78,10 @@ class Employee(User):
     # dob
     # start_date
     # end_date
+    # my_manager
 
     gender = models.CharField(max_length=1, null=False, blank=False)
     dob = models.DateField("Date Of Birth", null=False, blank=False)
     start_date = models.DateField("Start Date", null=False, blank=False)
     quit_date = models.DateField("Quit Date", null=True, blank=True)
+    my_manager = models.ForeignKey(Manager, on_delete=models.CASCADE)

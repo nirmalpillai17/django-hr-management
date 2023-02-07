@@ -1,0 +1,56 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block heading %}{{ heading }}{% endblock heading %}
+
+{% block content %}
+
+{% for manager in data %}
+
+<div class="col-lg-6">
+    <div class="card mb-3 mx-auto" style="max-width: 30rem;">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h5 class="card-title">{{ manager.0.first_name }} {{ manager.0.last_name }}</h5>
+                </div>
+
+                {% if role == 0 %}
+
+                <div class="col-4 d-flex justify-content-between gap-1">
+                    <a href="{% url 'view_user' manager.0.pk %}" class="btn btn-success">View</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+
+            {% for employee in manager.1 %}
+
+            <li class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-4">
+                        <span>{{ employee.first_name }} {{ employee.last_name }}</span>
+                    </div>
+                    <div class="col-4">
+                        <span>{{ employee.emp_id }}</span>
+                    </div>
+                    <div class="col-4 d-flex justify-content-between gap-1">
+                        <a href="#" class="btn btn-success">View</a>
+                        <a href="#" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock content %}
