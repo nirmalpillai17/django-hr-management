@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
+from django.contrib import messages
 
 from accounts.models import *
+from .forms import *
+
+ADD_EMP_DONE = "Add employee request sent successfully."
 
 
 def admin_home(request):
@@ -54,3 +58,35 @@ def employee_home(request):
         return render(request, "pages/employee_home.html", context)
     else:
         return HttpResponse("Unauthorised access!")
+
+
+def user_creation(request):  # function for admins
+    context = dict()
+    context["title"] = "Create User | Admin"
+    context["heading"] = "Create User Requests"
+    context["requests"] = NewEmployees.objects.all()
+    if request.method == "POST":
+        return redirect("admin_home")
+    return render(request, "create_user.html", context)
+
+
+def add_employee(request):  # function for manager
+    context = dict()
+    context["title"] = "New Employee | HR"
+    context["heading"] = "Add Employee Page"
+    form = EditEmployeeDetails(request.POST or None)
+    context["form"] = form
+    if request.method == "POST":
+        if form.is_valid():
+            fs = form.save(commit=False)
+            fs.first_name = form.cleaned_data["first_name"].title()
+            if fs.last_name:
+                form.cleaned_data["last_name"].title()
+            fs.save()
+            messages.success(request, ADD_EMP_DONE)
+            return redirect("hr_home")
+        for error_list in form.errors.values():
+            for error in error_list:
+                messages.warning(request, error)
+            return redirect("add_employee")
+    return render(request, "hr/add_employee.html", context)

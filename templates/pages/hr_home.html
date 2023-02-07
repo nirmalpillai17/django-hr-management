@@ -3,3 +3,25 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block heading %}{{ heading }}{% endblock heading %}
+
+{% block content %}
+
+<!------------------------->
+
+<div class="col-md">
+
+    <!-- card three - client -->
+
+    <div class="card mt-4 mb-4 mx-auto" style="max-width: 20rem;">
+        <img src="https://images.pexels.com/photos/330974/keizersvlieg-bug-nature-wings-330974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Add Employee</h5>
+            <p class="card-text">Request to add new employees with their perosnal data.</p>
+            <a href="{% url 'add_employee' %}" class="btn btn-secondary">Continue</a>
+        </div>
+    </div>
+</div>
+
+<!------------------------->
+
+{% endblock content %}
