@@ -19,7 +19,7 @@
                 {% if role == 0 %}
 
                 <div class="col-4 d-flex justify-content-between gap-1">
-                    <a href="{% url 'view_user' manager.0.pk %}" class="btn btn-success">View</a>
+                    <a href="{% url 'view_manager' manager.0.pk %}" class="btn btn-success">View</a>
                     <a href="#" class="btn btn-primary">Edit</a>
                 </div>
 
@@ -28,6 +28,8 @@
             </div>
         </div>
         <ul class="list-group list-group-flush">
+
+            {% if manager.1 %}
 
             {% for employee in manager.1 %}
 
@@ -40,13 +42,21 @@
                         <span>{{ employee.emp_id }}</span>
                     </div>
                     <div class="col-4 d-flex justify-content-between gap-1">
-                        <a href="#" class="btn btn-success">View</a>
+                        <a href="{% url 'view_employee' employee.pk %}" class="btn btn-success">View</a>
                         <a href="#" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
             </li>
 
             {% endfor %}
+
+            {% else %}
+
+            <li class="list-group-item">
+                    <span>No employees in database.</span>
+            </li>
+
+            {% endif %}
 
         </ul>
     </div>

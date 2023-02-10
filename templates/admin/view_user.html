@@ -1,0 +1,22 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block heading %}{{ heading }}{% endblock heading %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <table class="table border" style="max-width: 30rem;">
+        <tbody>
+            {% for field in data %}
+            <tr>
+                <td class="col-6">{{ field.0 }}</td>
+                <td class="col-6">{{ field.1 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

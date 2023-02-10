@@ -22,10 +22,17 @@ class EditEmployeeDetails(forms.ModelForm):
             "start_date",
             "quit_date",
         ]
-
         labels = {"my_manager": "Manager"}
-
         widgets = {
+            "first_name": forms.TextInput(
+                attrs={"style": "text-transform: capitalize;"}
+            ),
+            "last_name": forms.TextInput(
+                attrs={"style": "text-transform: capitalize;"}
+            ),
+            "mobile": forms.TextInput(
+                attrs={"pattern": "^[6-9]\d{9}$"}
+            ),
             "dob": DateInput(),
             "start_date": DateInput(),
             "quit_date": DateInput(),

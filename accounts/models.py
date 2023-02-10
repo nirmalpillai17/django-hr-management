@@ -1,36 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import RegexValidator
 
 
 class User(AbstractUser):
-    mobile = models.CharField(
-        "Mobile No.",
-        validators=[
-            RegexValidator(
-                regex="^[6-9]\d{9}$",
-                message="Invalid Indian mobile number!",
-                code="invalid",
-            )
-        ],
-        max_length=10,
-        null=False,
-        blank=False,
-    )
-
-    emp_id = models.CharField(
-        "Employee ID",
-        validators=[
-            RegexValidator(
-                regex="^[A-Za-z]{3}\d{5}$",
-                message="Invalid employee ID! Should be of form ABC12345.",
-                code="invalid",
-            )
-        ],
-        max_length=8,
-        null=False,
-        blank=False,
-    )
+    mobile = models.CharField("Mobile No.", max_length=10, null=False, blank=False)
+    emp_id = models.CharField("Employee ID", max_length=8, null=False, blank=False)
 
 
 class Admin(User):
@@ -85,3 +59,4 @@ class Employee(User):
     start_date = models.DateField("Start Date", null=False, blank=False)
     quit_date = models.DateField("Quit Date", null=True, blank=True)
     my_manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
+    my_hr = models.ForeignKey(HRManager, on_delete=models.CASCADE)

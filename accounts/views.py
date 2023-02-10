@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 
 from .forms import *
 from .models import *
-
+from .custom import *
 
 USER_TYPE_ERR = "User is not an {}. Please use correct login page."
 USER_INCORRECT = "Username or password is incorrect."
@@ -76,6 +76,8 @@ def hr_signup(request):
 
 
 def admin_login(request):
+    if if_admin(request):
+        return redirect("admin_home")
     context = dict()
     context["title"] = "Log In | Admin"
     context["heading"] = "Admin User Log In"
@@ -98,6 +100,8 @@ def admin_login(request):
 
 
 def manager_login(request):
+    if if_manager(request):
+        return redirect("manager_home")
     context = dict()
     context["title"] = "Log In | Manager"
     context["heading"] = "Manager User Log In"
@@ -120,6 +124,8 @@ def manager_login(request):
 
 
 def hr_login(request):
+    if if_hr(request):
+        return redirect("hr_home")
     context = dict()
     context["title"] = "Log In | HR"
     context["heading"] = "HR User Log In"
@@ -142,6 +148,8 @@ def hr_login(request):
 
 
 def employee_login(request):
+    if if_employee(request):
+        return redirect("employee_home")
     context = dict()
     context["title"] = "Log In | Employee"
     context["heading"] = "Employee User Log In"
