@@ -8,7 +8,7 @@ class DateInput(forms.DateInput):
     input_type = "date"
 
 
-class EditEmployeeDetails(forms.ModelForm):
+class EmployeeDetails(forms.ModelForm):
     class Meta:
         model = NewEmployees
         fields = [
@@ -30,9 +30,7 @@ class EditEmployeeDetails(forms.ModelForm):
             "last_name": forms.TextInput(
                 attrs={"style": "text-transform: capitalize;"}
             ),
-            "mobile": forms.TextInput(
-                attrs={"pattern": "^[6-9]\d{9}$"}
-            ),
+            "mobile": forms.TextInput(attrs={"pattern": "^[6-9]\d{9}$"}),
             "dob": DateInput(),
             "start_date": DateInput(),
             "quit_date": DateInput(),

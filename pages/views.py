@@ -145,7 +145,7 @@ def add_employee(request):  # function for hr
     context = dict()
     context["title"] = "New Employee | HR"
     context["heading"] = "Add Employee Page"
-    form = EditEmployeeDetails(request.POST or None)
+    form = EmployeeDetails(request.POST or None)
     context["form"] = form
     if request.method == "POST":
         if form.is_valid():
@@ -240,8 +240,8 @@ def view_manager_details(request, pk):
             ("Last Name", user.last_name),
             ("Email", user.email),
             ("Mobile No.", user.mobile),
-            # ("Gender", user.gender),
-            # ("Date of Birth", user.dob),
+            ("Gender", user.gender),
+            ("Date of Birth", user.dob),
             ("Organization", user.my_admin.org),
             ("Employee ID", user.emp_id),
             ("Employee Count", employee_count),
@@ -271,8 +271,8 @@ def view_hr_details(request, pk):
             ("Last Name", user.last_name),
             ("Email", user.email),
             ("Mobile No.", user.mobile),
-            # ("Gender", user.gender),
-            # ("Date of Birth", user.dob),
+            ("Gender", user.gender),
+            ("Date of Birth", user.dob),
             ("Organization", user.my_admin.org),
             ("Employee ID", user.emp_id),
             ("Employee Count", employee_count),

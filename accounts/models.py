@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+GENDER = (
+        ("M", "Male"),
+        ("F", "Female"),
+    )
 
 class User(AbstractUser):
     mobile = models.CharField("Mobile No.", max_length=10, null=False, blank=False)
@@ -26,6 +30,10 @@ class Manager(User):
     # mobile
     # emp_id
     # my_admin
+    gender = models.CharField(
+        max_length=1, choices=GENDER, null=False, blank=False
+    )
+    dob = models.DateField("Date Of Birth", null=False, blank=False)
     my_admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
 
 
@@ -37,6 +45,10 @@ class HRManager(User):
     # mobile
     # emp_id
     # my_admin
+    gender = models.CharField(
+        max_length=1, choices=GENDER, null=False, blank=False
+    )
+    dob = models.DateField("Date Of Birth", null=False, blank=False)
     my_admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
 
 
@@ -60,3 +72,4 @@ class Employee(User):
     quit_date = models.DateField("Quit Date", null=True, blank=True)
     my_manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
     my_hr = models.ForeignKey(HRManager, on_delete=models.CASCADE)
+    # add project here as foreign key
